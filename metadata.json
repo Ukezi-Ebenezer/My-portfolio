@@ -1,0 +1,6 @@
+{
+  "name": "Ukezi Portfolio",
+  "description": "An interactive, visually spectacular portfolio for Ukezi, a Creative Technologist and Full-Stack Developer, featuring immersive animations, beautiful showcase, and high-fidelity layout.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
