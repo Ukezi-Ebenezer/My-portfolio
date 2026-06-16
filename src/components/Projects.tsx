@@ -1,8 +1,5 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion } from 'motion/react';
+import { ArrowRight } from 'lucide-react';
 
 const projectsData = [
   {
@@ -59,84 +56,54 @@ const projectsData = [
 ];
 
 export default function Projects() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate Section title elements
-      gsap.from(['.projects-eyebrow', '.projects-headline'], {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
-      });
-
-      // Animate each project card independently as it enters the viewport
-      cardsRef.current.forEach((card) => {
-        if (!card) return;
-        gsap.fromTo(card,
-          {
-            opacity: 0,
-            y: 80,
-            scale: 0.97
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.75,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 85%',
-              toggleActions: 'play none none none'
-            }
-          }
-        );
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
       id="projects"
-      ref={containerRef}
-      className="relative bg-[#0D0D12] py-24 px-16 max-md:py-16 max-md:px-8 border-t border-white/10"
+      className="relative bg-[#0D0D12] py-24 px-16 max-md:py-16 max-md:px-8 border-t border-white/10 overflow-hidden"
     >
       <div className="max-w-5xl mx-auto flex flex-col items-start text-left">
         
         {/* Section Eyebrow Label */}
-        <span
+        <motion.span
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="projects-eyebrow font-mono text-[13px] text-[#C9A84C] tracking-[0.1em] mb-4 block"
         >
           // Projects
-        </span>
+        </motion.span>
 
         {/* Section Heading */}
-        <h2
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
           className="projects-headline font-sans font-bold text-[#FAF8F5] leading-tight mb-16"
           style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}
         >
           Real work. Real results.
-        </h2>
+        </motion.h2>
 
         {/* Horizontal Projects List Stack */}
-        <div id="projects-list-stack" className="w-full flex flex-col gap-8">
+        <div id="projects-list-stack" className="w-full flex flex-col gap-10">
           {projectsData.map((project, index) => (
-            <div
+            <motion.div
               id={`project-card-${project.id}`}
               key={project.id}
-              ref={(el) => {
-                cardsRef.current[index] = el;
+              initial={{ opacity: 0, y: 100, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ 
+                duration: 0.85, 
+                ease: [0.16, 1, 0.3, 1], // premium custom easeOutQuint curve
+                delay: index * 0.05
+              }}
+              whileHover={{ 
+                y: -6, 
+                borderColor: "rgba(201,168,76,0.35)",
+                boxShadow: "0 20px 40px -20px rgba(201,168,76,0.15)"
               }}
               className="group flex flex-col md:flex-row w-full border border-[rgba(201,168,76,0.15)] rounded-[2rem] overflow-hidden bg-white/[0.02] transition-colors duration-300 hover:bg-white/[0.03]"
             >
@@ -214,8 +181,28 @@ export default function Projects() {
                 </div>
               </div>
 
-            </div>
+            </motion.div>
           ))}
+        </div>
+
+        {/* View More Projects Action Area */}
+        <div className="w-full flex justify-center mt-14" id="view-more-projects-wrapper">
+          <motion.a
+            id="view-more-projects-btn"
+            href="https://www.upwork.com/freelancers/~01e9b7aead8e9f31f9?mp_source=share"
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            className="group/btn px-8 h-[54px] inline-flex items-center justify-center border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C]/5 text-[15px] font-semibold rounded-full duration-300 transition-all gap-2 cursor-pointer"
+          >
+            View More Projects
+            <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 duration-300" />
+          </motion.a>
         </div>
 
       </div>
