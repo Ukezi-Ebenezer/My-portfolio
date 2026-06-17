@@ -3,5 +3,5 @@
 </div>
 
 #About me
-I'm an AI Product Design who builds Intelligent Digital Experiences, Design Smart AI-Powered Automations • From Idea to Exceptional User Experience.
+I'm an AI Product Designer who builds Intelligent Digital Experiences, Design Smart AI-Powered Automations and Turn Ideas to Exceptional User Experiences.
 
