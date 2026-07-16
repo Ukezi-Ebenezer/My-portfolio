@@ -75,7 +75,7 @@ export default function Contact() {
           {/* Champagne CTA Primary call */}
           <a
             id="contact-cta-book-appointment"
-            href="http://wa.link/hd5oet"
+            href="https://wa.link/ytm4z6"
             target="_blank"
             rel="noreferrer"
             className="w-full sm:w-auto h-[54px] px-9 inline-flex items-center justify-center bg-[#C9A84C] text-[#0D0D12] text-base font-semibold rounded-full hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] shadow-[0_10px_20px_-10px_rgba(201,168,76,0.3)] hover:shadow-[0_15px_25px_-5px_rgba(201,168,76,0.45)] cursor-pointer"
