@@ -6,6 +6,7 @@ import About from './components/About';
 import Services from './components/Services';
 import Projects from './components/Projects';
 import Certifications from './components/Certifications';
+import SuccessStories from './components/SuccessStories';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -22,7 +23,7 @@ export default function App() {
 
   // Monitor active sections on scroll using IntersectionObserver
   useEffect(() => {
-    const sections = ['hero', 'about', 'services', 'projects', 'certifications', 'contact'];
+    const sections = ['hero', 'about', 'services', 'projects', 'certifications', 'success-stories', 'contact'];
     
     const observerOptions = {
       root: null,
@@ -93,7 +94,10 @@ export default function App() {
         {/* Unit 5: Verified Credentials Certifications */}
         <Certifications />
 
-        {/* Unit 6: Client Inquiries Sync Get-In-Touch Section */}
+        {/* Unit 6: Success Stories */}
+        <SuccessStories />
+
+        {/* Unit 7: Client Inquiries Sync Get-In-Touch Section */}
         <Contact />
         
       </main>
