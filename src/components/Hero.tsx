@@ -45,7 +45,7 @@ export default function Hero({ onScrollToSection }: HeroProps) {
     <section
       id="hero"
       ref={containerRef}
-      className="relative h-[100dvh] w-full flex flex-col justify-end pb-20 pl-20 max-sm:p-8 overflow-hidden bg-[#0D0D12]"
+      className="relative h-[100dvh] w-full flex flex-col justify-end pb-20 pl-20 max-sm:p-8 max-sm:pb-28 overflow-hidden bg-[#0D0D12]"
       style={{
         backgroundImage: `url("https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1800&q=90")`,
         backgroundSize: 'cover',
@@ -112,7 +112,7 @@ export default function Hero({ onScrollToSection }: HeroProps) {
       <button
         id="hero-scroll-to-about"
         onClick={() => onScrollToSection('about')}
-        className="hero-scroll absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 cursor-pointer text-[#C9A84C] z-10 group"
+        className="hero-scroll absolute bottom-6 max-sm:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 cursor-pointer text-[#C9A84C] z-10 group"
         aria-label="Scroll to description"
       >
         <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#888794]/60 group-hover:text-[#C9A84C] transition-colors">
