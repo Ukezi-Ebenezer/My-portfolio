@@ -1,10 +1,13 @@
+import { portfolioOwner } from '../data/portfolioData';
+import { Github, Linkedin, MessageCircle } from 'lucide-react';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const handleScroll = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 90; // offset for the floating pill-navbar
+      const offset = 85;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -18,52 +21,84 @@ export default function Footer() {
   };
 
   const navItems = [
-    { id: 'services', label: 'Services' },
+    { id: 'hero', label: 'Top' },
+    { id: 'about', label: 'About' },
+    { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
-    { id: 'certifications', label: 'Certifications' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'speaking', label: 'Facilitating & Speaking' },
+    { id: 'github', label: 'GitHub' },
     { id: 'contact', label: 'Contact' }
   ];
 
   return (
     <footer
       id="portfolio-global-footer"
-      className="relative z-10 bg-[#08080E] rounded-t-[3rem] px-16 py-16 max-md:px-8 max-md:py-12 mt-0 border-t border-white/5"
+      className="relative z-10 bg-[#160B1C] text-[#FAF7F2] rounded-t-[2.5rem] sm:rounded-t-[3.5rem] px-6 sm:px-12 md:px-16 pt-16 pb-12 border-t border-white/10"
     >
-      <style>{`
-        @keyframes statusPulse {
-          0% {
-            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
-          }
-          100% {
-            box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
-          }
-        }
-        .pulse-dot {
-          animation: statusPulse 2s ease-in-out infinite;
-        }
-      `}</style>
-
-      <div className="max-w-5xl mx-auto flex flex-col">
-        {/* Top Row: Flex space-between */}
-        <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-8 text-left">
-          {/* Creator & Tagline */}
-          <div className="flex flex-col gap-1.5">
-            <span className="font-sans font-bold text-lg text-[#FAF8F5] leading-tight">
-              Ukezi Ebenezer
-            </span>
-            <p className="font-drama italic text-[15px] text-[#888794] leading-relaxed">
-              "Turning vibes into products."
+      <div className="max-w-6xl mx-auto flex flex-col">
+        
+        {/* Top Row: Brand & Main Navigation */}
+        <div className="w-full flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 text-left pb-12 border-b border-white/10">
+          
+          {/* Creator & Brand */}
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-3">
+              <span className="font-drama text-3xl font-bold tracking-tight text-[#FAF7F2]">
+                Ukezi Ebenezer<span className="text-[#C9A84C]">.</span>
+              </span>
+              <span className="font-mono text-[10px] text-[#C9A84C] uppercase tracking-widest bg-white/10 px-2.5 py-0.5 rounded-full border border-white/10">
+                AI Automation
+              </span>
+            </div>
+            <p className="font-drama italic text-base text-[#FAF7F2]/65 max-w-md">
+              "{portfolioOwner.tagline}."
             </p>
           </div>
 
-          {/* Navigation links */}
+          {/* Social Links Row */}
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href={portfolioOwner.links.whatsapp}
+              target="_blank"
+              rel="noreferrer"
+              className="w-10 h-10 rounded-full bg-white/10 hover:bg-[#25D366]/20 border border-white/10 hover:border-[#25D366]/40 text-[#FAF7F2] hover:text-[#25D366] flex items-center justify-center transition-all cursor-pointer"
+              aria-label="WhatsApp"
+            >
+              <MessageCircle className="w-4 h-4" />
+            </a>
+
+            <a
+              href={portfolioOwner.links.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="w-10 h-10 rounded-full bg-white/10 hover:bg-[#0A66C2]/20 border border-white/10 hover:border-[#0A66C2]/40 text-[#FAF7F2] hover:text-[#0A66C2] flex items-center justify-center transition-all cursor-pointer"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-4 h-4" />
+            </a>
+
+            <a
+              href={portfolioOwner.links.github}
+              target="_blank"
+              rel="noreferrer"
+              className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/30 text-[#FAF7F2] flex items-center justify-center transition-all cursor-pointer"
+              aria-label="GitHub"
+            >
+              <Github className="w-4 h-4" />
+            </a>
+          </div>
+
+        </div>
+
+        {/* Middle Navigation Strip */}
+        <div className="w-full flex flex-wrap items-center justify-between gap-4 py-8 border-b border-white/08">
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {navItems.map((item) => (
               <button
-                id={`footer-nav-link-${item.id}`}
                 key={item.id}
                 onClick={() => handleScroll(item.id)}
-                className="font-sans text-[14px] text-[#888794] hover:text-[#C9A84C] hover:-translate-y-[1px] transition-all duration-200 cursor-pointer text-left"
+                className="font-sans text-xs sm:text-[13px] text-[#FAF7F2]/70 hover:text-[#C9A84C] transition-colors cursor-pointer text-left"
               >
                 {item.label}
               </button>
@@ -71,30 +106,18 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider line style */}
-        <div 
-          className="h-[1px] w-full bg-[rgba(201,168,76,0.15)] my-10" 
-          id="footer-divider-line"
-        />
-
-        {/* Bottom Row: Flex space-between */}
-        <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-left">
-          {/* Copyright notice text */}
-          <span className="font-mono text-[12px] text-[#888794] tracking-wide">
-            &copy; {currentYear} Ukezi Ebenezer. All rights reserved.
+        {/* Bottom Row: Copyright & Status */}
+        <div className="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-8 text-xs font-mono text-[#FAF7F2]/50">
+          <span>
+            &copy; {currentYear} Ukezi Ebenezer Nwachukwu. Built with clean, accessible code.
           </span>
 
-          {/* System status node */}
-          <div className="flex items-center" id="footer-status-wrapper">
-            <div 
-              className="pulse-dot w-2 h-2 rounded-full bg-[#22C55E]" 
-              id="footer-pulse-green-dot"
-            />
-            <span className="font-mono text-[12px] text-[#888794] ml-2 tracking-wide">
-              System Operational
-            </span>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
+            <span className="text-[#FAF7F2]/70">All Systems Operational • 99.9% Uptime</span>
           </div>
         </div>
+
       </div>
     </footer>
   );

@@ -1,6 +1,6 @@
 {
   "name": "Ukezi Portfolio",
-  "description": "An interactive, visually spectacular portfolio for Ukezi, a Creative Technologist and Full-Stack Developer, featuring immersive animations, beautiful showcase, and high-fidelity layout.",
+  "description": "An interactive, high-impact portfolio for Ukezi Ebenezer, an AI Automation Engineer specializing in autonomous agents, n8n workflows, and intelligent business pipelines.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

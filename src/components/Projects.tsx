@@ -1,208 +1,151 @@
 import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
-
-const projectsData = [
-  {
-    id: 1,
-    title: "AI Lead Capture & Automation System",
-    category: "Automation · AI Workflow",
-    tools: ["Make.com", "Lovable", "Google Sheets", "Gmail"],
-    result: "Processes 200+ leads/month automatically — zero manual follow-up",
-    description: "Validates incoming leads, scores them by budget and company size, routes to Hot/Warm/Cold pipelines, logs to Sheets, and triggers follow-up emails.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80",
-    accent: "#C9A84C"
-  },
-  {
-    id: 2,
-    title: "Automated Client Onboarding using n8n",
-    category: "Automation · AI Workflow",
-    tools: ["n8n", "HubSpot", "Asana", "Google Workspace", "Slack"],
-    result: "Reduced client onboarding time from 2 days to under 20 minutes",
-    description: "Receives client submissions, validates duplicates, creates CRM records, generates onboarding tasks, sends welcome emails, and notifies the internal team automatically.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80",
-    accent: "#C9A84C"
-  },
-  {
-    id: 3,
-    title: "AI Customer Support Agent using n8n",
-    category: "Automation · AI Agent",
-    tools: ["n8n", "OpenAI", "Telegram", "Gmail", "Webhooks"],
-    result: "Handles 80% of support inquiries without human intervention",
-    description: "An AI-powered support agent that receives inquiries, processes them with an LLM, and sends intelligent responses through Telegram — 24/7, no sleep needed.",
-    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=900&q=80",
-    accent: "#C9A84C"
-  },
-  {
-    id: 4,
-    title: "Lead Capture & Enrichment using n8n",
-    category: "Automation · AI Workflow",
-    tools: ["n8n", "HubSpot CRM", "OpenAI", "Slack", "Email Automation"],
-    result: "Sales team notified in real-time — 3x faster lead response",
-    description: "Captures leads from a landing page, enriches company data with AI, stores in HubSpot CRM, sends welcome emails, and pings Slack instantly for hot leads.",
-    image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=900&q=80",
-    accent: "#C9A84C"
-  },
-  {
-    id: 5,
-    title: "NevTech — Web Design & E-commerce",
-    category: "Web Design · E-commerce",
-    tools: ["Figma", "Framer", "Lovable"],
-    result: "Full brand identity and storefront live in under 2 weeks",
-    description: "Designed and built the NevTech brand identity, landing page, and e-commerce product flow from scratch. Dark aesthetic, fast load, mobile-first.",
-    image: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=900&q=80",
-    accent: "#C9A84C",
-    link: "https://nevtech.netlify.app/"
-  }
-];
+import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { projectsData } from '../data/portfolioData';
 
 export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative bg-[#0D0D12] py-24 px-16 max-md:py-16 max-md:px-8 border-t border-white/10 overflow-hidden"
+      className="relative bg-[#FAF7F2] py-24 sm:py-32 px-6 sm:px-12 md:px-16 border-t border-[#1E1026]/08 overflow-hidden"
     >
-      <div className="max-w-5xl mx-auto flex flex-col items-start text-left">
+      <div className="max-w-6xl mx-auto flex flex-col items-start text-left">
         
-        {/* Section Eyebrow Label */}
+        {/* Section Eyebrow */}
         <motion.span
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="projects-eyebrow font-mono text-[13px] text-[#C9A84C] tracking-[0.1em] mb-4 block"
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.6 }}
+          className="font-mono text-xs uppercase tracking-[0.2em] text-[#6A3279] font-semibold mb-3 block"
         >
-          // Projects
+          // 04 • SELECTED WORKFLOWS & CASE STUDIES
         </motion.span>
 
-        {/* Section Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="projects-headline font-sans font-bold text-[#FAF8F5] leading-tight mb-16"
-          style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}
-        >
-          Real work. Real results.
-        </motion.h2>
+        {/* Section Heading & Subtitle */}
+        <div className="w-full flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7 }}
+            className="font-drama text-4xl sm:text-5xl md:text-6xl text-[#1E1026] leading-tight tracking-tight"
+          >
+            An idea. <br />
+            <span className="italic text-[#6A3279]">Made real.</span>
+          </motion.h2>
 
-        {/* Horizontal Projects List Stack */}
-        <div id="projects-list-stack" className="w-full flex flex-col gap-10">
+          <p className="font-sans text-sm text-[#1E1026]/75 max-w-md leading-relaxed">
+            Real enterprise and startup automations running live in production. Every system is built to eliminate human error, accelerate response times, and scale seamlessly.
+          </p>
+        </div>
+
+        {/* Projects Stack */}
+        <div className="w-full flex flex-col gap-12">
           {projectsData.map((project, index) => (
             <motion.div
-              id={`project-card-${project.id}`}
               key={project.id}
-              initial={{ opacity: 0, y: 100, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ 
-                duration: 0.85, 
-                ease: [0.16, 1, 0.3, 1], // premium custom easeOutQuint curve
-                delay: index * 0.05
-              }}
-              whileHover={{ 
-                y: -6, 
-                borderColor: "rgba(201,168,76,0.35)",
-                boxShadow: "0 20px 40px -20px rgba(201,168,76,0.15)"
-              }}
-              className="group flex flex-col md:flex-row w-full border border-[rgba(201,168,76,0.15)] rounded-[2rem] overflow-hidden bg-white/[0.02] transition-colors duration-300 hover:bg-white/[0.03]"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.05 }}
+              transition={{ duration: 0.7, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -6 }}
+              className="w-full rounded-[2.5rem] bg-white border border-[#1E1026]/10 p-6 sm:p-10 shadow-sm hover:shadow-xl transition-all flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch"
             >
-              {/* Product Showcase Visual Element on the Left (40% width on desktop) */}
-              {project.link ? (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full md:w-[40%] h-[240px] md:h-[320px] overflow-hidden relative block cursor-pointer group/img-link"
-                  id={`project-image-box-${project.id}`}
-                >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    referrerPolicy="no-referrer"
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-[0.9]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0D0D12]/60 to-transparent group-hover/img-link:bg-black/10 transition-colors duration-300" />
-                </a>
-              ) : (
-                <div 
-                  className="w-full md:w-[40%] h-[240px] md:h-[320px] overflow-hidden relative"
-                  id={`project-image-box-${project.id}`}
-                >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    referrerPolicy="no-referrer"
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-[0.9]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0D0D12]/60 to-transparent" />
-                </div>
-              )}
-
-              {/* Product Specifications and Narration on the Right (60% width on desktop) */}
-              <div 
-                className="w-full md:w-[60%] p-8 md:p-10 flex flex-col justify-between"
-                id={`project-content-box-${project.id}`}
-              >
-                <div>
-                  {/* Category Tag */}
-                  <span className="font-mono text-[12px] text-[#C9A84C] border border-[#C9A84C]/35 px-3.5 py-1 rounded-full bg-[#0D0D12]/40 inline-block">
+              {/* Left Image / Visual Card */}
+              <div className="w-full lg:w-5/12 h-[260px] sm:h-[320px] rounded-3xl overflow-hidden relative flex-shrink-0 group">
+                <img
+                  src={project.imageUrl}
+                  alt={project.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1E1026]/70 via-transparent to-transparent" />
+                
+                {/* Category Badge on image */}
+                <div className="absolute top-4 left-4">
+                  <span className="px-3.5 py-1 rounded-full bg-[#1E1026]/80 text-[#FAF7F2] font-mono text-[10px] uppercase tracking-wider backdrop-blur-md">
                     {project.category}
                   </span>
+                </div>
 
-                  {/* Showcase Title */}
-                  <h3 className="font-sans text-2xl font-bold text-[#FAF8F5] mt-3 tracking-tight">
+                {/* Metrics Overlay Bottom */}
+                {project.metrics && (
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-2 p-2.5 rounded-2xl bg-white/90 backdrop-blur-md">
+                    {project.metrics.slice(0, 2).map((metric, mIdx) => (
+                      <div key={mIdx} className="flex flex-col text-left px-2">
+                        <span className="font-mono text-[9px] uppercase tracking-wider text-[#1E1026]/60">
+                          {metric.label}
+                        </span>
+                        <span className="font-drama text-lg font-bold text-[#6A3279] leading-tight">
+                          {metric.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Right Content Column */}
+              <div className="w-full lg:w-7/12 flex flex-col justify-between text-left">
+                <div>
+                  <h3 className="font-drama text-2xl sm:text-3xl font-bold text-[#1E1026] tracking-tight leading-tight mb-2">
                     {project.title}
                   </h3>
 
-                  {/* Quantitative Result Callout */}
-                  <div className="mt-4 p-3.5 rounded-r-xl border-l-3 border-[#C9A84C] bg-[#C9A84C]/10 text-sm font-sans font-medium text-[#FAF8F5]">
-                    📈 Result: {project.result}
+                  <p className="font-drama text-base sm:text-lg italic text-[#6A3279] mb-4">
+                    {project.tagline}
+                  </p>
+
+                  <p className="font-sans text-xs sm:text-sm text-[#1E1026]/75 leading-relaxed mb-6">
+                    {project.longDescription}
+                  </p>
+
+                  {/* Outcomes Checklist */}
+                  {project.outcomes && (
+                    <div className="flex flex-col gap-2 mb-6 p-4 rounded-2xl bg-[#FAF7F2] border border-[#1E1026]/06">
+                      <span className="font-mono text-[10px] uppercase tracking-widest text-[#6A3279] font-bold">
+                        Key Measurable Outcomes
+                      </span>
+                      {project.outcomes.map((outcome, oIdx) => (
+                        <div key={oIdx} className="flex items-start gap-2 text-xs text-[#1E1026]/80">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#6A3279] mt-0.5 flex-shrink-0" />
+                          <span>{outcome}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Bottom Row: Tech Stack Pills & Direct Links */}
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#1E1026]/08">
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tech.map((tool) => (
+                      <span
+                        key={tool}
+                        className="font-mono text-[11px] text-[#1E1026] bg-[#1E1026]/05 border border-[#1E1026]/08 px-2.5 py-0.5 rounded-full"
+                      >
+                        {tool}
+                      </span>
+                    ))}
                   </div>
 
-                  {/* Descriptive text */}
-                  <p className="font-sans text-[15px] text-[#888794] mt-3 leading-relaxed">
-                    {project.description}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#1E1026]/15 hover:border-[#6A3279] text-[#1E1026] hover:text-[#6A3279] font-mono text-xs transition-colors cursor-pointer"
+                      >
+                        Blueprint ↗
+                      </a>
+                    )}
+                  </div>
                 </div>
 
-                {/* Built with Specification tools list */}
-                <div className="flex flex-wrap gap-2 mt-6">
-                  {project.tools.map((tag) => (
-                    <span
-                      key={tag}
-                      className="font-mono text-[12px] text-[#FAF8F5] bg-white/5 border border-white/5 px-3 py-1 rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
               </div>
-
             </motion.div>
           ))}
-        </div>
-
-        {/* View More Projects Action Area */}
-        <div className="w-full flex justify-center mt-14" id="view-more-projects-wrapper">
-          <motion.a
-            id="view-more-projects-btn"
-            href="https://www.upwork.com/freelancers/~01e9b7aead8e9f31f9?mp_source=share"
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            className="group/btn px-8 h-[54px] inline-flex items-center justify-center border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C]/5 text-[15px] font-semibold rounded-full duration-300 transition-all gap-2 cursor-pointer"
-          >
-            View More Projects
-            <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 duration-300" />
-          </motion.a>
         </div>
 
       </div>

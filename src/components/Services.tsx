@@ -1,84 +1,56 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion } from 'motion/react';
 
 export default function Services() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Fade up section title elements
-      gsap.from(['.services-eyebrow', '.services-headline'], {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
-      });
-
-      // Stagger fade-up the custom cards
-      gsap.from('.service-card', {
-        opacity: 0,
-        y: 45,
-        duration: 0.9,
-        stagger: 0.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.services-cards-grid',
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  const card1Tags = ["Figma", "FigJam", "Framer", "Hira"];
-  const card2Tags = ["n8n", "Make.com", "OpenAI", "HubSpot", "Zapier"];
+  const card1Tags = ["Claude / Anthropic", "OpenAI", "LangChain", "RAG Systems", "Vector DBs", "Python"];
+  const card2Tags = ["n8n", "Make.com", "Zapier", "HubSpot", "Webhooks", "REST APIs"];
 
   return (
     <section
       id="services"
-      ref={containerRef}
       className="relative bg-[#0D0D12] py-24 px-16 max-md:py-16 max-md:px-8 border-t border-white/10"
     >
       <div className="max-w-5xl mx-auto flex flex-col items-start text-left">
         
         {/* Section Eyebrow Header */}
-        <span
+        <motion.span
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="services-eyebrow font-mono text-[13px] text-[#C9A84C] tracking-[0.1em] mb-4 block"
         >
-          // What I Do
-        </span>
+          // Core Services
+        </motion.span>
 
         {/* Section Heading */}
-        <h2
-          className="services-headline font-sans font-bold text-[#FAF8F5] leading-tight max-w-[650px] mb-12"
+        <motion.h2
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+          className="services-headline font-sans font-bold text-[#FAF8F5] leading-tight max-w-[700px] mb-12"
           style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}
         >
-          Two skills. One freelancer. Zero handoffs.
-        </h2>
+          High-impact AI. Seamless automations. Zero operational friction.
+        </motion.h2>
 
         {/* Services 2-Column Grid */}
         <div
           className="services-cards-grid w-full grid grid-cols-1 md:grid-cols-2 gap-8 text-left mt-4"
         >
           
-          {/* Card 1: UI/UX Design */}
-          <div
-            id="service-card-ui-ux"
-            className="service-card p-10 max-sm:p-6 bg-[rgba(201,168,76,0.06)] border border-[rgba(201,168,76,0.2)] rounded-[2rem] hover:scale-[1.02] hover:border-[rgba(201,168,76,0.45)] transition-all duration-300 flex flex-col justify-between"
+          {/* Card 1: Autonomous AI Agents & LLMs */}
+          <motion.div
+            id="service-card-ai-agents"
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -4, borderColor: "rgba(201,168,76,0.45)" }}
+            className="service-card p-10 max-sm:p-6 bg-[rgba(201,168,76,0.06)] border border-[rgba(201,168,76,0.2)] rounded-[2rem] transition-all duration-300 flex flex-col justify-between"
           >
             <div>
-              {/* Custom SVG Design grid/nib icon */}
+              {/* Custom SVG AI Brain / Agent Node icon */}
               <div className="w-10 h-10 flex items-center justify-center mb-6 text-[#C9A84C]">
                 <svg
                   className="w-10 h-10"
@@ -89,19 +61,20 @@ export default function Services() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <path d="M21 12H3" />
-                  <path d="M12 3v18" />
-                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2a4 4 0 0 1 4 4v1a4 4 0 0 1-4 4 4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Z" />
+                  <path d="M18 8a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3" />
+                  <path d="M6 8a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3" />
+                  <path d="M12 11v11" />
+                  <path d="m8 18 4 4 4-4" />
                 </svg>
               </div>
 
               <h3 className="font-sans text-2xl font-bold text-[#FAF8F5] mb-4">
-                UI/UX Design
+                Autonomous AI Agents & LLMs
               </h3>
               
               <p className="font-sans text-base text-[#888794] leading-relaxed mb-8">
-                I design user-centered interfaces from wireframe to polished prototype. Clean, functional, and built to hand off directly to development — or I build it myself.
+                Custom AI agents, LLM integrations (Claude & OpenAI), and intelligent RAG systems tailored to your business knowledge base. From 24/7 autonomous support to smart lead qualification, I build agents that think, decide, and execute.
               </p>
             </div>
 
@@ -116,12 +89,17 @@ export default function Services() {
                 </span>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 2: AI Workflow Automation */}
-          <div
+          <motion.div
             id="service-card-ai-automation"
-            className="service-card p-10 max-sm:p-6 bg-[rgba(201,168,76,0.06)] border border-[rgba(201,168,76,0.2)] rounded-[2rem] hover:scale-[1.02] hover:border-[rgba(201,168,76,0.45)] transition-all duration-300 flex flex-col justify-between"
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -4, borderColor: "rgba(201,168,76,0.45)" }}
+            className="service-card p-10 max-sm:p-6 bg-[rgba(201,168,76,0.06)] border border-[rgba(201,168,76,0.2)] rounded-[2rem] transition-all duration-300 flex flex-col justify-between"
           >
             <div>
               {/* Custom SVG Workflow/Node node icon */}
@@ -145,11 +123,11 @@ export default function Services() {
               </div>
 
               <h3 className="font-sans text-2xl font-bold text-[#FAF8F5] mb-4">
-                AI Workflow Automation
+                End-to-End Workflow Automation
               </h3>
               
               <p className="font-sans text-base text-[#888794] leading-relaxed mb-8">
-                I build n8n and Make.com workflows that automate your lead capture, client onboarding, email sequences, and data management — saving 10–40 hours per month.
+                I build production-grade n8n and Make.com workflows that connect your CRM, email sequences, databases, and internal tools — eliminating manual data entry and saving teams 20–80 hours every single month.
               </p>
             </div>
 
@@ -164,7 +142,7 @@ export default function Services() {
                 </span>
               ))}
             </div>
-          </div>
+          </motion.div>
 
         </div>
 

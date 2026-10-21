@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import gsap from 'gsap';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Services from './components/Services';
+import Skills from './components/Skills';
 import Projects from './components/Projects';
-import Certifications from './components/Certifications';
+import Experience from './components/Experience';
+import SpeakingVideos from './components/SpeakingVideos';
+import GitHubProjects from './components/GitHubProjects';
 import SuccessStories from './components/SuccessStories';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -13,21 +14,25 @@ import Footer from './components/Footer';
 export default function App() {
   const [activeSection, setActiveSection] = useState('hero');
 
-  // Global page-load animation
-  useEffect(() => {
-    gsap.fromTo('#ukezi-portfolio-root',
-      { opacity: 0 },
-      { opacity: 1, duration: 0.6, ease: 'power2.out' }
-    );
-  }, []);
-
   // Monitor active sections on scroll using IntersectionObserver
   useEffect(() => {
-    const sections = ['hero', 'about', 'services', 'projects', 'certifications', 'success-stories', 'contact'];
+    const sections = [
+      'hero',
+      'about',
+      'services',
+      'skills',
+      'projects',
+      'experience',
+      'certifications',
+      'speaking',
+      'github',
+      'testimonials',
+      'contact'
+    ];
     
     const observerOptions = {
       root: null,
-      rootMargin: '-30% 0px -40% 0px', // focused viewport zone trigger
+      rootMargin: '-25% 0px -35% 0px',
       threshold: 0
     };
 
@@ -54,7 +59,7 @@ export default function App() {
   const handleScrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 90; // offset suited for the floating pill-shape navbar
+      const offset = 85; // suited for floating pill navbar
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -68,41 +73,49 @@ export default function App() {
   };
 
   return (
-    <div id="ukezi-portfolio-root" className="relative min-h-screen bg-[#0D0D12] text-[#FAF8F5] antialiased overflow-hidden selection:bg-[#C9A84C]/20 selection:text-[#C9A84C]">
-      
-      {/* Background grain noise effect overlay applied via design style system */}
-      <div className="absolute inset-0 pointer-events-none noise-overlay z-50 mix-blend-overlay opacity-[0.04]" />
+    <div
+      id="ukezi-portfolio-root"
+      className="relative min-h-screen bg-[#FAF7F2] text-[#1E1026] antialiased overflow-x-hidden selection:bg-[#6A3279]/20 selection:text-[#6A3279]"
+    >
+      {/* Background grain noise effect overlay */}
+      <div className="fixed inset-0 pointer-events-none noise-overlay z-50 mix-blend-overlay opacity-[0.03]" />
 
-      {/* Horizontally centered pill shape layout z-index 50 Navbar */}
+      {/* Luxury Floating Pill Navbar */}
       <Navbar activeSection={activeSection} onSectionChange={handleScrollToSection} />
 
       {/* Main Structural Layout Content */}
       <main className="relative z-10 w-full flex flex-col">
         
-        {/* Unit 1: Introduction Centered Section */}
+        {/* 1. Hero Section */}
         <Hero onScrollToSection={handleScrollToSection} />
 
-        {/* Unit 2: Narrative Identity Section (About, Why Work with me, Tools) */}
-        <About />
+        {/* 2. About Me & Offerings Section */}
+        <About onScrollToSection={handleScrollToSection} />
 
-        {/* Unit 3: My Offerings Services */}
-        <Services />
+        {/* 3. Skills & Professional Expertise */}
+        <Skills />
 
-        {/* Unit 4: Creative Projects Showcase Catalog */}
+        {/* 4. Selected Projects & Case Studies */}
         <Projects />
 
-        {/* Unit 5: Verified Credentials Certifications */}
-        <Certifications />
+        {/* 5. Work Experience, Education & Certifications */}
+        <Experience />
 
-        {/* Unit 6: Success Stories */}
+        {/* 6. Facilitating & Speaking Videos */}
+        <SpeakingVideos />
+
+        {/* 7. GitHub Projects & Repository Links */}
+        <GitHubProjects />
+
+        {/* Social Proof: Client Testimonials */}
         <SuccessStories />
 
-        {/* Unit 7: Client Inquiries Sync Get-In-Touch Section */}
+        {/* 8. Contact Section */}
         <Contact />
         
       </main>
 
-      {/* Modular Unified Footer */}
+      {/* Global Modular Footer */}
       <Footer />
 
     </div>

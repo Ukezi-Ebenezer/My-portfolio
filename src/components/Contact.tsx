@@ -1,115 +1,141 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useState } from 'react';
+import { motion } from 'motion/react';
+import { portfolioOwner } from '../data/portfolioData';
+import { MessageCircle, Mail, ArrowUpRight, Copy, Check, Linkedin } from 'lucide-react';
 
 export default function Contact() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [copied, setCopied] = useState(false);
+  const emailAddress = "ebenezerukezi@gmail.com";
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Fade-up sequence for Contact Section
-      gsap.from(
-        [
-          '.contact-eyebrow',
-          '.contact-headline',
-          '.contact-subtext',
-          '.contact-button',
-          '.contact-trust-row'
-        ],
-        {
-          opacity: 0,
-          y: 40,
-          duration: 0.8,
-          stagger: 0.12,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(emailAddress);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
 
   return (
     <section
       id="contact"
-      ref={containerRef}
-      className="relative py-28 px-16 max-md:py-20 max-md:px-8 border-t border-white/10"
-      style={{
-        background: 'linear-gradient(180deg, #0D0D12 0%, #111118 100%)'
-      }}
+      className="relative bg-[#FAF7F2] py-24 sm:py-32 px-6 sm:px-12 md:px-16 border-t border-[#1E1026]/08 overflow-hidden"
     >
-      {/* Background soft lighting highlights */}
-      <div className="absolute inset-x-0 bottom-0 h-[400px] bg-[#C9A84C]/5 blur-[120px] rounded-t-full pointer-events-none z-0" />
-
-      <div className="max-w-[700px] mx-auto text-center relative z-10 flex flex-col items-center">
+      <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
         
-        {/* Section Eyebrow Label */}
-        <span
-          className="contact-eyebrow font-mono text-[13px] text-[#C9A84C] tracking-[0.1em] uppercase block"
+        {/* Section Eyebrow */}
+        <motion.span
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.6 }}
+          className="font-mono text-xs uppercase tracking-[0.2em] text-[#6A3279] font-semibold mb-3 block"
         >
-          // Let's Work Together
-        </span>
+          // 08 • GET IN TOUCH & START AUTOMATING
+        </motion.span>
 
-        {/* Section Main Headline */}
-        <h2
-          className="contact-headline font-drama italic text-[#FAF8F5] leading-[1.1] mt-4 mb-6 max-w-[660px]"
-          style={{ fontSize: 'clamp(36px, 6vw, 64px)' }}
+        {/* Section Main Container: Velvet Plum Luxury Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.8 }}
+          className="w-full luxury-card-dark rounded-[2.5rem] sm:rounded-[3.5rem] p-8 sm:p-14 md:p-16 relative overflow-hidden text-left"
         >
-          Got a process that's wasting your team's time?
-        </h2>
+          {/* Subtle gold ambient glow in top-right corner */}
+          <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#C9A84C]/10 blur-3xl pointer-events-none" />
 
-        {/* Subtext Paragraph */}
-        <p className="contact-subtext font-sans text-[17px] text-[#888794] leading-relaxed max-w-[520px] mt-2 mb-10">
-          I typically respond within 12 hours. First call is free — no pitch, just 20 minutes to understand what you actually need and whether I can help.
-        </p>
+          <div className="relative z-10 w-full">
+            {/* Pill Status */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/10 text-[#C9A84C] font-mono text-xs mb-6">
+              <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
+              Available for new automation projects & contracts
+            </div>
 
-        {/* Action Button Channels */}
-        <div className="contact-button flex flex-col sm:flex-row items-center justify-center gap-5 w-full sm:w-auto">
-          {/* Champagne CTA Primary call */}
-          <a
-            id="contact-cta-book-appointment"
-            href="https://wa.link/ytm4z6"
-            target="_blank"
-            rel="noreferrer"
-            className="w-full sm:w-auto h-[54px] px-9 inline-flex items-center justify-center bg-[#C9A84C] text-[#0D0D12] text-base font-semibold rounded-full hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] shadow-[0_10px_20px_-10px_rgba(201,168,76,0.3)] hover:shadow-[0_15px_25px_-5px_rgba(201,168,76,0.45)] cursor-pointer"
-          >
-            Book an Appointment
-          </a>
+            <h2 className="font-drama text-4xl sm:text-5xl md:text-6xl text-[#FAF7F2] leading-[1.08] tracking-tight mb-6">
+              Got a process that's wasting <br />
+              <span className="italic text-[#C9A84C]">your team's time?</span>
+            </h2>
 
-          {/* Outline Secondary Link */}
-          <a
-            id="contact-cta-connect-linkedin"
-            href="https://www.linkedin.com/in/ebenezer-ukezi-542475217/"
-            target="_blank"
-            rel="noreferrer"
-            className="w-full sm:w-auto h-[54px] px-9 inline-flex items-center justify-center border border-[#C9A84C] text-[#C9A84C] hover:text-[#FAF8F5] text-base font-semibold rounded-full hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:bg-[#C9A84C]/5 cursor-pointer"
-          >
-            Connect on LinkedIn
-          </a>
-        </div>
+            <p className="font-sans text-sm sm:text-base text-[#FAF7F2]/75 leading-relaxed max-w-2xl mb-10">
+              I typically respond within 12 hours. First conversation is free — 20 minutes to understand your workflow bottlenecks, review your stack, and determine the fastest path to measurable time savings.
+            </p>
 
-        {/* Centered Trust Signal Elements Row */}
-        <div
-          className="contact-trust-row flex flex-wrap justify-center items-center gap-x-8 gap-y-3 mt-12 pt-4 border-t border-white/5 w-full max-w-lg"
-          id="contact-trust-factors"
-        >
-          <span className="font-mono text-[13px] text-[#888794] flex items-center gap-1.5 whitespace-nowrap">
-            <span>⚡</span> Usually replies in &lt; 12hrs
-          </span>
-          <span className="font-mono text-[13px] text-[#888794] flex items-center gap-1.5 whitespace-nowrap">
-            <span>🌍</span> Works with clients globally
-          </span>
-          <span className="font-mono text-[13px] text-[#888794] flex items-center gap-1.5 whitespace-nowrap">
-            <span>✅</span> 2+ years experience
-          </span>
-        </div>
+            {/* Main Action Channels Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              
+              {/* WhatsApp / Direct Consultation Call */}
+              <a
+                href={portfolioOwner.links.whatsapp}
+                target="_blank"
+                rel="noreferrer"
+                className="p-5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/10 hover:border-[#C9A84C]/40 transition-all flex items-center justify-between group cursor-pointer"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-[#25D366]/20 text-[#25D366] flex items-center justify-center flex-shrink-0">
+                    <MessageCircle className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="font-sans font-semibold text-sm text-[#FAF7F2] block group-hover:text-[#C9A84C] transition-colors">
+                      Chat on WhatsApp
+                    </span>
+                    <span className="font-mono text-xs text-[#FAF7F2]/60">
+                      Direct line • Instant reply
+                    </span>
+                  </div>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-[#FAF7F2]/60 group-hover:text-[#C9A84C] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              </a>
+
+              {/* LinkedIn Network */}
+              <a
+                href={portfolioOwner.links.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="p-5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/10 hover:border-[#C9A84C]/40 transition-all flex items-center justify-between group cursor-pointer"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-[#0A66C2]/20 text-[#0A66C2] flex items-center justify-center flex-shrink-0">
+                    <Linkedin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="font-sans font-semibold text-sm text-[#FAF7F2] block group-hover:text-[#C9A84C] transition-colors">
+                      Connect on LinkedIn
+                    </span>
+                    <span className="font-mono text-xs text-[#FAF7F2]/60">
+                      Professional profile & references
+                    </span>
+                  </div>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-[#FAF7F2]/60 group-hover:text-[#C9A84C] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              </a>
+
+              {/* Copy Email Directly */}
+              <button
+                onClick={handleCopyEmail}
+                className="sm:col-span-2 lg:col-span-1 p-5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/10 hover:border-[#C9A84C]/40 transition-all flex items-center justify-between group cursor-pointer text-left"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-[#C9A84C]/20 text-[#C9A84C] flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="font-sans font-semibold text-sm text-[#FAF7F2] block group-hover:text-[#C9A84C] transition-colors">
+                      {emailAddress}
+                    </span>
+                    <span className="font-mono text-xs text-[#FAF7F2]/60">
+                      {copied ? 'Copied to clipboard!' : 'Click to copy email address'}
+                    </span>
+                  </div>
+                </div>
+                {copied ? (
+                  <Check className="w-4 h-4 text-[#22C55E]" />
+                ) : (
+                  <Copy className="w-4 h-4 text-[#FAF7F2]/60 group-hover:text-[#C9A84C] transition-all" />
+                )}
+              </button>
+
+            </div>
+
+          </div>
+        </motion.div>
 
       </div>
     </section>
